@@ -23,6 +23,7 @@ int _printf(const char *format, ...)
 		{
 			_putchar(format[i]);
 			counter++;
+            i++;
 		}
 		else
 		{
@@ -41,15 +42,14 @@ int _printf(const char *format, ...)
 				case 'c':
 					_putchar(va_arg(ap, int));
                     counter++;
-                    i+= 2;
+                    i += 2;
                     break;
                 case 's':
                     counter += print_string(va_arg(ap, char*));
-                    i+= 2;
+                    i += 2;
                     break;
 			}
 		}
-		i++;
 	}
 
 	return (counter);
