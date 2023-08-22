@@ -5,9 +5,9 @@
  *
  * @s: param
  *
- * Return: void
+ * Return: len
  */
-void print_string(char *s)
+int print_string(char *s)
 {
 	int len;
 	int i;
@@ -15,9 +15,11 @@ void print_string(char *s)
 	if (s)
 	{
 		len = (int)strlen(s);
-		for (i = 0; i < len; i--)
+		for (i = 0; i < len; i++)
 		{
 			_putchar(*(s + i));
 		}
+        return (len);
 	}
+    return (0);
 }

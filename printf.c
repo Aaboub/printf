@@ -2,7 +2,6 @@
 
 /**
  * _printf - printf
- *
  * @format: format
  *
  * Return: number of char printed
@@ -35,13 +34,19 @@ int _printf(const char *format, ...)
 			{
 				_putchar(format[i + 1]);
 				counter++;
-				i++;
+				i += 2;
 			}
 			switch(format[i + 1])
 			{
-				case 's':
-					print_string(va_arg(ap, char*));
-					break;
+				case 'c':
+					_putchar(va_arg(ap, int));
+                    counter++;
+                    i+= 2;
+                    break;
+                case 's':
+                    counter += print_string(va_arg(ap, char*));
+                    i+= 2;
+                    break;
 			}
 		}
 		i++;
