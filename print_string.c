@@ -7,19 +7,19 @@
  *
  * Return: len
  */
-int print_string(char *s)
+int print_string(const char *s)
 {
-	int len;
-	int i;
+    int i = 0;
 
 	if (s)
 	{
-		len = (int)strlen(s);
-		for (i = 0; i < len; i++)
+		while (*s)
 		{
-			_putchar(*(s + i));
+			_putchar(*s);
+            s++;
+            i++;
 		}
-        return (len);
+        return (i);
 	}
-    return (0);
+    return print_string("(null)");
 }

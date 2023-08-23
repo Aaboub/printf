@@ -27,28 +27,23 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			if (!format[i + 1] || (format[i + 1] == ' ' && (!format[i + 2] || format[i + 2] == ' ')))
+			if (!format[i + 1] || format[i + 1] == ' ')
 			{
 				return (-1);
-			}
-			else if (format[i + 1] == ' ')
-			{
-				_putchar(format[i + 1]);
-				counter++;
-				i += 2;
 			}
 			switch(format[i + 1])
 			{
 				case 'c':
-					_putchar(va_arg(ap, int));
-                    counter++;
-                    i += 2;
+                    counter += _putchar(va_arg(ap, int));
                     break;
                 case 's':
                     counter += print_string(va_arg(ap, char*));
-                    i += 2;
+                    break;
+                case '%':
+                    counter += _putchar('%');
                     break;
 			}
+            i += 2;
 		}
 	}
 

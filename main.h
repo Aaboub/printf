@@ -7,6 +7,6 @@
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int print_string(char *s);
+int print_string(const char *s);
 
 #endif
