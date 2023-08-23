@@ -23,32 +23,29 @@ int _printf(const char *format, ...)
 		{
 			_putchar(format[i]);
 			counter++;
-            i++;
+			i++;
 		}
 		else
 		{
 			if (!format[i + 1] || format[i + 1] == ' ')
-			{
 				return (-1);
-			}
-			switch(format[i + 1])
+			switch (format[i + 1])
 			{
 				case 'c':
-                    counter += _putchar(va_arg(ap, int));
-                    break;
-                case 's':
-                    counter += print_string(va_arg(ap, char*));
-                    break;
-                case '%':
-                    counter += _putchar('%');
-                    break;
-                default:
-                    counter += _putchar('%');
-                    counter += _putchar(format[i + 1]);
+					counter += _putchar(va_arg(ap, int));
+					break;
+				case 's':
+					counter += print_string(va_arg(ap, char*));
+					break;
+				case '%':
+					counter += _putchar('%');
+					break;
+				default:
+					counter += _putchar('%');
+					counter += _putchar(format[i + 1]);
 			}
-            i += 2;
+			i += 2;
 		}
 	}
-
 	return (counter);
 }

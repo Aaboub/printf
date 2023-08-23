@@ -9,17 +9,17 @@
  */
 int print_string(const char *s)
 {
-    int i = 0;
+	int i = 0;
 
 	if (s)
 	{
 		while (*s)
 		{
 			_putchar(*s);
-            s++;
-            i++;
+			s++;
+			i++;
 		}
-        return (i);
+		return (i);
 	}
-    return print_string("(null)");
+	return (print_string("(null)"));
 }
