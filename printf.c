@@ -63,7 +63,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-            buffer[i] = format[i];
+            put_char(format[i]);
 			counter++;
 			i++;
 		}
