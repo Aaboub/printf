@@ -7,6 +7,12 @@
 #include <string.h>
 #include <limits.h>
 
+#define BASE_BINA 2
+#define BASE_OCTA 8
+#define BASE_HEXA_S 16
+#define BASE_HEXA_C 17
+
+
 int _printf(const char *format, ...);
 int print_char(char c);
 int print_string(const char *s);
