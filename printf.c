@@ -25,9 +25,9 @@ int do_print(const char *format, int i, va_list ap)
 		case 'i':
 			print_int(va_arg(ap, int), &sum);
 			return (sum);
-        case 'b':
-            print_binary(va_arg(ap, int), &sum);
-            return sum;
+		case 'b':
+			print_binary(va_arg(ap, int), &sum);
+			return (sum);
 		default:
 			print_char('%');
 			print_char(format[i + 1]);
