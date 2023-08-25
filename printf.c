@@ -26,16 +26,16 @@ int do_print(const char *format, int i, va_list ap)
 			print_int(va_arg(ap, int), &sum);
 			return (sum);
 		case 'b':
-			print_binary(va_arg(ap, long), BASE_BINA, &sum);
+            print_base(va_arg(ap, long), BASE_BINA, &sum);
 			return (sum);
         case 'o':
-            print_binary(va_arg(ap, long), BASE_OCTA, &sum);
+            print_base(va_arg(ap, long), BASE_OCTA, &sum);
             return (sum);
         case 'x':
-            print_binary(va_arg(ap, long), BASE_HEXA_S, &sum);
+            print_base(va_arg(ap, long), BASE_HEXA_S, &sum);
             return (sum);
         case 'X':
-            print_binary(va_arg(ap, long), BASE_HEXA_C, &sum);
+            print_base(va_arg(ap, long), BASE_HEXA_C, &sum);
             return (sum);
         case 'u':
             print_unsigned(va_arg(ap, unsigned int), &sum);
