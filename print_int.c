@@ -2,7 +2,6 @@
 
 /**
  * do_print_int - recursion function to print int
- *
  * @i: param
  * @sum: param
  */
@@ -22,20 +21,22 @@ void do_print_int(int i, int *sum)
 
 /**
  * print_int - entry point for do_print
- *
  * @ap: param
+ * @arg: param
+ *
+ * Return: int
  */
 int print_int(va_list ap, int arg)
 {
-    int sum = 0;
-    int i = va_arg(ap, int);
+	int sum = 0;
+	int i = va_arg(ap, int);
 
-    UNUSED(arg);
+	UNUSED(arg);
 	if (i < 0)
 	{
 		put_char('-');
 		sum++;
 	}
 	do_print_int(i, &sum);
-    return sum;
+	return (sum);
 }

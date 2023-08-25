@@ -3,15 +3,15 @@
 /**
  * do_print - do actual printing
  *
- * @format: param
  * @i: param
  * @ap: param
+ * @buffer: param
  *
  * Return: number of printed chars
  */
-int do_print(const char i, va_list ap, char* buffer)
+int do_print(const char i, va_list ap, char *buffer)
 {
-    UNUSED(buffer);
+	UNUSED(buffer);
 	switch (i)
 	{
 		case 'c':
@@ -22,17 +22,17 @@ int do_print(const char i, va_list ap, char* buffer)
 		case 'i':
 			return (print_int(ap, BASE_IGNO));
 		case 'b':
-            return (print_base(ap, BASE_BINA));
-        case 'o':
-            return (print_base(ap, BASE_OCTA));
-        case 'x':
-            return (print_base(ap, BASE_HEXA_S));
-        case 'X':
-            return (print_base(ap, BASE_HEXA_C));
-        case 'u':
-            return(print_unsigned(ap, BASE_IGNO));
-        case '%':
-            return (put_char('%'));
+			return (print_base(ap, BASE_BINA));
+		case 'o':
+			return (print_base(ap, BASE_OCTA));
+		case 'x':
+			return (print_base(ap, BASE_HEXA_S));
+		case 'X':
+			return (print_base(ap, BASE_HEXA_C));
+		case 'u':
+			return (print_unsignedt(ap, BASE_IGNO));
+		case '%':
+			return (put_char('%'));
 		default:
 			put_char('%');
 			put_char(i);
@@ -52,7 +52,7 @@ int _printf(const char *format, ...)
 	int counter = 0;
 	int i = 0;
 	va_list ap;
-    char buffer[1024];
+	char buffer[1024];
 
 	if (!format)
 		return (-1);
@@ -63,7 +63,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-            put_char(format[i]);
+			put_char(format[i]);
 			counter++;
 			i++;
 		}
