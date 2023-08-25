@@ -1,6 +1,35 @@
 #include "main.h"
 
 /**
+ * do_print - do actual printing
+ * @format: param
+ * @i: param
+ * @ap: param
+ *
+ * Return: number of printed chars
+ */
+int do_print(const char *format, int i, va_list ap){
+    int sum = 0;
+    switch (format[i + 1])
+    {
+        case 'c':
+            return print_char(va_arg(ap, int));
+        case 's':
+            return print_string(va_arg(ap, char*));
+        case '%':
+            return print_char('%');
+        case 'd':
+        case 'i':
+            print_int(va_arg(ap, int), &sum);
+            return sum;
+        default:
+            print_char('%');
+            print_char(format[i + 1]);
+            return (2);
+    }
+}
+
+/**
  * _printf - printf
  * @format: format
  *
@@ -21,7 +50,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
+            print_char(format[i]);
 			counter++;
 			i++;
 		}
@@ -29,21 +58,7 @@ int _printf(const char *format, ...)
 		{
 			if (!format[i + 1] || format[i + 1] == ' ')
 				return (-1);
-			switch (format[i + 1])
-			{
-				case 'c':
-					counter += _putchar(va_arg(ap, int));
-					break;
-				case 's':
-					counter += print_string(va_arg(ap, char*));
-					break;
-				case '%':
-					counter += _putchar('%');
-					break;
-				default:
-					counter += _putchar('%');
-					counter += _putchar(format[i + 1]);
-			}
+            counter += do_print(format, i, ap);
 			i += 2;
 		}
 	}
