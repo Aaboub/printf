@@ -5,7 +5,7 @@
  * @i: param
  * @sum: param
  */
-void do_print_binary(int i, int *sum)
+void do_print_binary(long i, int *sum)
 {
     if (i == 0)
         return;
@@ -20,7 +20,7 @@ void do_print_binary(int i, int *sum)
  * @i: param
  * @sum: param
  */
-void print_binary(int i, int *sum)
+void print_binary(long i, int *sum)
 {
     if (i == 0)
     {
@@ -33,5 +33,5 @@ void print_binary(int i, int *sum)
         print_char('-');
         (*sum)++;
     }
-    do_print_binary(abs(i), sum);
+    do_print_binary(i < 0 ? -i : i, sum);
 }
