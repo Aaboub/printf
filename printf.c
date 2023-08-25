@@ -29,7 +29,7 @@ int do_print(const char *format, int i, va_list ap)
 			print_binary(va_arg(ap, long), &sum);
 			return (sum);
         case 'u':
-            print_binary(va_arg(ap, unsigned int), &sum);
+            print_unsigned(va_arg(ap, unsigned int), &sum);
             return (sum);
 		default:
 			print_char('%');

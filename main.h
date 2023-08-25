@@ -12,5 +12,6 @@ int print_char(char c);
 int print_string(const char *s);
 void print_int(int i, int *sum);
 void print_binary(long i, int *sum);
+void print_unsigned(unsigned int i, int *sum);
 
 #endif
