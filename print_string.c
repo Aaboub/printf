@@ -28,5 +28,6 @@ int print_string(va_list ap, int arg)
 {
     char *s = va_arg(ap, char*);
 
+    UNUSED(arg);
     return do_print_string(s);
 }

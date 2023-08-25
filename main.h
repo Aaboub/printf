@@ -13,6 +13,8 @@
 #define BASE_HEXA_S 16
 #define BASE_HEXA_C 17
 
+#define UNUSED(x) (void)(x)
+
 
 int _printf(const char *format, ...);
 int put_char(char c);

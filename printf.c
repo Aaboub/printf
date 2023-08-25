@@ -11,6 +11,7 @@
  */
 int do_print(const char i, va_list ap, char* buffer)
 {
+    UNUSED(buffer);
 	switch (i)
 	{
 		case 'c':
@@ -51,13 +52,12 @@ int _printf(const char *format, ...)
 	int counter = 0;
 	int i = 0;
 	va_list ap;
+    char buffer[1024];
 
 	if (!format)
 		return (-1);
 
 	va_start(ap, format);
-
-    char buffer[1024];
 
 	while (format[i])
 	{

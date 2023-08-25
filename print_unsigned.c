@@ -30,6 +30,7 @@ int print_unsigned(va_list ap, int arg)
     int sum = 0;
     unsigned int i = va_arg(ap, unsigned int);
 
+    UNUSED(arg);
     do_print_unsigned(i, &sum);
     return sum;
 }

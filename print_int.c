@@ -30,6 +30,7 @@ int print_int(va_list ap, int arg)
     int sum = 0;
     int i = va_arg(ap, int);
 
+    UNUSED(arg);
 	if (i < 0)
 	{
 		put_char('-');

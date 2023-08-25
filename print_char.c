@@ -7,5 +7,6 @@
  */
 int print_char(va_list ap, int arg)
 {
+    UNUSED(arg);
 	return put_char(va_arg(ap, int));
 }
