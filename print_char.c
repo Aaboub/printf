@@ -1,12 +1,11 @@
-#include <unistd.h>
+#include "main.h"
 
 /**
- * print_char - writes the character c to stdout
- * @c: The character to print
+ * print_char - writes character
+ * @ap: param
  *
- * Return: On success 1 else -1
  */
-int print_char(char c)
+int print_char(va_list ap, int arg)
 {
-	return (write(1, &c, 1));
+	return put_char(va_arg(ap, int));
 }

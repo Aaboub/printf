@@ -9,40 +9,32 @@
  *
  * Return: number of printed chars
  */
-int do_print(const char *format, int i, va_list ap)
+int do_print(const char i, va_list ap, char* buffer)
 {
-	int sum = 0;
-
-	switch (format[i + 1])
+	switch (i)
 	{
 		case 'c':
-			return (print_char(va_arg(ap, int)));
+			return (print_char(ap, BASE_IGNO));
 		case 's':
-			return (print_string(va_arg(ap, char*)));
-		case '%':
-			return (print_char('%'));
+			return (print_string(ap, BASE_IGNO));
 		case 'd':
 		case 'i':
-			print_int(va_arg(ap, int), &sum);
-			return (sum);
+			return (print_int(ap, BASE_IGNO));
 		case 'b':
-            print_base(va_arg(ap, long), BASE_BINA, &sum);
-			return (sum);
+            return (print_base(ap, BASE_BINA));
         case 'o':
-            print_base(va_arg(ap, long), BASE_OCTA, &sum);
-            return (sum);
+            return (print_base(ap, BASE_OCTA));
         case 'x':
-            print_base(va_arg(ap, long), BASE_HEXA_S, &sum);
-            return (sum);
+            return (print_base(ap, BASE_HEXA_S));
         case 'X':
-            print_base(va_arg(ap, long), BASE_HEXA_C, &sum);
-            return (sum);
+            return (print_base(ap, BASE_HEXA_C));
         case 'u':
-            print_unsigned(va_arg(ap, unsigned int), &sum);
-            return (sum);
+            return(print_unsigned(ap, BASE_IGNO));
+        case '%':
+            return (put_char('%'));
 		default:
-			print_char('%');
-			print_char(format[i + 1]);
+			put_char('%');
+			put_char(i);
 			return (2);
 	}
 }
@@ -65,11 +57,13 @@ int _printf(const char *format, ...)
 
 	va_start(ap, format);
 
+    char buffer[1024];
+
 	while (format[i])
 	{
 		if (format[i] != '%')
 		{
-			print_char(format[i]);
+            buffer[i] = format[i];
 			counter++;
 			i++;
 		}
@@ -77,7 +71,7 @@ int _printf(const char *format, ...)
 		{
 			if (!format[i + 1] || format[i + 1] == ' ')
 				return (-1);
-			counter += do_print(format, i, ap);
+			counter += do_print(format[i + 1], ap, buffer);
 			i += 2;
 		}
 	}

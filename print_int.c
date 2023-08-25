@@ -15,7 +15,7 @@ void do_print_int(int i, int *sum)
 	}
 	else
 	{
-		print_char(abs(i) + '0');
+		put_char(abs(i) + '0');
 		(*sum)++;
 	}
 }
@@ -23,15 +23,18 @@ void do_print_int(int i, int *sum)
 /**
  * print_int - entry point for do_print
  *
- * @i: param
- * @sum: param
+ * @ap: param
  */
-void print_int(int i, int *sum)
+int print_int(va_list ap, int arg)
 {
+    int sum = 0;
+    int i = va_arg(ap, int);
+
 	if (i < 0)
 	{
-		print_char('-');
-		(*sum)++;
+		put_char('-');
+		sum++;
 	}
-	do_print_int(i, sum);
+	do_print_int(i, &sum);
+    return sum;
 }
