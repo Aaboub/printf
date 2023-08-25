@@ -26,8 +26,11 @@ int do_print(const char *format, int i, va_list ap)
 			print_int(va_arg(ap, int), &sum);
 			return (sum);
 		case 'b':
-			print_binary(va_arg(ap, long), &sum);
+			print_binary(va_arg(ap, long), 2, &sum);
 			return (sum);
+        case 'o':
+            print_binary(va_arg(ap, long), 8, &sum);
+            return (sum);
         case 'u':
             print_unsigned(va_arg(ap, unsigned int), &sum);
             return (sum);
