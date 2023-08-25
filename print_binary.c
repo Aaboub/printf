@@ -22,13 +22,16 @@ void do_print_binary(int i, int *sum)
  */
 void print_binary(int i, int *sum)
 {
-    if (i < 0)
-        print_char('-');
     if (i == 0)
     {
         print_char('0');
         (*sum)++;
         return;
+    }
+    if (i < 0)
+    {
+        print_char('-');
+        (*sum)++;
     }
     do_print_binary(abs(i), sum);
 }
