@@ -1,6 +1,20 @@
 #include "main.h"
 
 /**
+ * print_binary - print binary
+ * @i: param
+ * @sum: param
+ */
+void print_binary(int i, int *sum) {
+    if(i != 0)
+    {
+        print_binary(i / 2, sum);
+        print_char((i % 2) + '0');
+        (*sum)++;
+    }
+}
+
+/**
  * do_print - do actual printing
  *
  * @format: param
@@ -25,6 +39,9 @@ int do_print(const char *format, int i, va_list ap)
 		case 'i':
 			print_int(va_arg(ap, int), &sum);
 			return (sum);
+        case 'b':
+            print_binary(va_arg(ap, int), &sum);
+            return sum;
 		default:
 			print_char('%');
 			print_char(format[i + 1]);
