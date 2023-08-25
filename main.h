@@ -22,6 +22,6 @@ int print_char(va_list ap, int arg);
 int print_string(va_list ap, int arg);
 int print_int(va_list ap, int arg);
 int print_base(va_list ap, int arg);
-int print_nsigned(va_list ap, int arg);
+int print_nsign(va_list ap, int arg);
 
 #endif
