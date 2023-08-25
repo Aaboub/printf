@@ -20,13 +20,13 @@ void do_print_unsigned(unsigned int i, int *sum)
 }
 
 /**
- * print_unsigned - entry point for do_print
+ * print_nsigned - entry point for do_print
  * @ap: param
  * @arg: param
  *
  * Return: int
  */
-int print_unsigned(va_list ap, int arg)
+int print_nsigned(va_list ap, int arg)
 {
 	int sum = 0;
 	unsigned int i = va_arg(ap, unsigned int);

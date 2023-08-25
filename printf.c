@@ -30,7 +30,7 @@ int do_print(const char i, va_list ap, char *buffer)
 		case 'X':
 			return (print_base(ap, BASE_HEXA_C));
 		case 'u':
-			return (print_unsignedt(ap, BASE_IGNO));
+			return (print_nsigned(ap, BASE_IGNO));
 		case '%':
 			return (put_char('%'));
 		default:
