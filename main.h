@@ -30,6 +30,7 @@ int print_string(va_list ap, char arg, char *buffer, int *pos);
 int print_percent(va_list ap, char arg, char *buffer, int *pos);
 int print_int(va_list ap, char arg, char *buffer, int *pos);
 int print_base(va_list ap, char arg, char *buffer, int *pos);
+int print_address(va_list ap, char arg, char *buffer, int *pos);
 int print_nsign(va_list ap, char arg, char *buffer, int *pos);
 
 int write_buffer(char *buffer, int *pos);

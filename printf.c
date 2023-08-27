@@ -17,9 +17,10 @@ int print_arg(const char arg, va_list ap, char *buffer, int *pos)
 	operation operations[] = {{'c', print_char}, {'s', print_string},
 		{'%', print_percent}, {'d', print_int}, {'i', print_int},
 		{'b', print_base}, {'o', print_base}, {'x', print_base},
-		{'X', print_base}, {'u', print_nsign}, {'S', print_string}};
+		{'X', print_base}, {'u', print_nsign}, {'S', print_string},
+        {'p', print_address}};
 
-	for (i = 0; i < 11; i++)
+	for (i = 0; i < 12; i++)
 	{
 		if (arg == operations[i].op)
 			return (operations[i].function(ap, arg, buffer, pos));
@@ -38,7 +39,8 @@ int is_valid_arg(char arg)
 	return (arg != '\0' && (arg != 'c' && arg != 's'
 				&& arg != 'd' && arg != 'i' && arg != 'b'
 				&& arg != 'o' && arg != 'x' && arg != 'X'
-				&& arg != 'u' && arg != '%' && arg != 'S'));
+				&& arg != 'u' && arg != '%' && arg != 'S'
+                && arg != 'p'));
 }
 
 /**
