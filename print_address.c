@@ -34,6 +34,7 @@ int print_address(va_list ap, char arg, char *buffer, int *pos)
 	int w = 0;
 	unsigned long i = va_arg(ap, unsigned long);
 
+	UNUSED(arg);
 	if (i == 0)
 	{
 		w = write_buffer(buffer, pos);
