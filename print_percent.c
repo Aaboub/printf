@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_char - writes character
+ * print_percent - writes character
  * @ap: param
  * @arg: param
  * @buffer: param
@@ -9,13 +9,14 @@
  *
  * Return: int
  */
-int print_char(va_list ap, char arg, char *buffer, int *pos)
+int print_percent(va_list ap, char arg, char *buffer, int *pos)
 {
 	int w;
 
-	UNUSED(arg);
+	UNUSED(ap);
+	UNUSED(pos);
 	w = write_buffer(buffer, pos);
-	buffer[*pos] = va_arg(ap, int);
+	buffer[*pos] = arg;
 	(*pos)++;
 	return (w);
 }

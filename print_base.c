@@ -5,15 +5,18 @@
  * @i: param
  * @base: param
  * @map: param
- * @sum: param
+ * @w: param
+ * @buffer: param
+ * @pos: param
  */
-void do_print_base(long i, int base, char *map, int *sum)
+void do_print_base(long i, int base, char *map, int *w, char *buffer, int *pos)
 {
 	if (i == 0)
 		return;
-	do_print_base(i / base, base, map, sum);
-	put_char(map[(i % base)]);
-	(*sum)++;
+	do_print_base(i / base, base, map, w, buffer, pos);
+    (*w) += write_buffer(buffer, pos);
+    buffer[*pos] = map[(i % base)];
+    (*pos)++;
 }
 
 
@@ -21,39 +24,44 @@ void do_print_base(long i, int base, char *map, int *sum)
  * print_base - print binary
  * @ap: param
  * @base: param
+ * @buffer: param
+ * @pos: param
  *
  * Return: int
  */
-int print_base(va_list ap, int base)
+int print_base(va_list ap, char base, char *buffer, int *pos)
 {
-	int sum = 0;
+	int w = 0;
 	long i = va_arg(ap, long);
 
 	if (i == 0)
 	{
-		put_char('0');
-		return (1);
+        w = write_buffer(buffer, pos);
+        buffer[*pos] = '0';
+        (*pos)++;
+		return (w);
 	}
 	if (i < 0)
 	{
-		put_char('-');
-		sum++;
+        w = write_buffer(buffer, pos);
+        buffer[*pos] = '-';
+        (*pos)++;
 	}
 
 	switch (base)
 	{
 		case BASE_BINA:
-			do_print_base(i < 0 ? -i : i, 2, "01", &sum);
+			do_print_base(i < 0 ? -i : i, 2, "01", &w, buffer, pos);
 			break;
 		case BASE_OCTA:
-			do_print_base(i < 0 ? -i : i, 8, "01234567", &sum);
+			do_print_base(i < 0 ? -i : i, 8, "01234567", &w, buffer, pos);
 			break;
 		case BASE_HEXA_S:
-			do_print_base(i < 0 ? -i : i, 16, "0123456789abcdef", &sum);
+			do_print_base(i < 0 ? -i : i, 16, "0123456789abcdef", &w, buffer, pos);
 			break;
 		case BASE_HEXA_C:
-			do_print_base(i < 0 ? -i : i, 16, "0123456789ABCDEF", &sum);
+			do_print_base(i < 0 ? -i : i, 16, "0123456789ABCDEF", &w, buffer, pos);
 			break;
 	}
-	return (sum);
+	return (w);
 }

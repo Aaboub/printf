@@ -1,58 +1,48 @@
 #include "main.h"
 
 /**
- * do_print - do actual printing
+ * print_arg - do actual printing
  *
  * @i: param
  * @ap: param
  * @buffer: param
+ * @pos: param
  *
  * Return: number of printed chars
  */
-int do_print(const char i, va_list ap, char *buffer)
+int print_arg(const char arg, va_list ap, char *buffer, int *pos)
 {
-	UNUSED(buffer);
-	switch (i)
-	{
-		case 'c':
-			return (print_char(ap, BASE_IGNO));
-		case 's':
-			return (print_string(ap, BASE_IGNO));
-		case 'd':
-		case 'i':
-			return (print_int(ap, BASE_IGNO));
-		case 'b':
-			return (print_base(ap, BASE_BINA));
-		case 'o':
-			return (print_base(ap, BASE_OCTA));
-		case 'x':
-			return (print_base(ap, BASE_HEXA_S));
-		case 'X':
-			return (print_base(ap, BASE_HEXA_C));
-		case 'u':
-			return (print_nsign(ap, BASE_IGNO));
-		case '%':
-			return (put_char('%'));
-		default:
-			put_char('%');
-			put_char(i);
-			return (2);
-	}
+    int i;
+
+    operation operations[] = {{'c', print_char}, {'s', print_string}, {'%', print_percent}, {'d', print_int},
+                              {'i', print_int}, {'b', print_base}, {'o', print_base}, {'x', print_base},
+                              {'X', print_base}, {'u', print_nsign}};
+
+    for (i = 0; i < 9; i++){
+        if (arg == operations[i].op)
+            return (operations[i].function(ap, arg, buffer, pos));
+    }
+}
+
+int is_valid_arg(char arg) {
+    return (arg != '\0' &&
+           (arg != 'c' && arg != 's' && arg != 'd' && arg != 'i' && arg != 'b' && arg != 'o' && arg != 'x' &&
+            arg != 'X' && arg != 'u' && arg != '%'));
 }
 
 /**
  * _printf - printf
- *
  * @format: format
  *
  * Return: number of char printed
  */
 int _printf(const char *format, ...)
 {
-	int counter = 0;
-	int i = 0;
-	va_list ap;
-	char buffer[1024];
+	char buffer[BUFFER_SIZE];
+    int counter = 0;
+    int pos = 0;
+    int i = 0;
+    va_list ap;
 
 	if (!format)
 		return (-1);
@@ -61,19 +51,20 @@ int _printf(const char *format, ...)
 
 	while (format[i])
 	{
-		if (format[i] != '%')
+		if (format[i] != '%' || is_valid_arg(format[i + 1]))
 		{
-			put_char(format[i]);
-			counter++;
+            counter += write_buffer(buffer, &pos);
+			buffer[pos] = format[i];
+            pos++;
 			i++;
 		}
 		else
 		{
-			if (!format[i + 1] || format[i + 1] == ' ')
-				return (-1);
-			counter += do_print(format[i + 1], ap, buffer);
+			counter += print_arg(format[i + 1], ap, buffer, &pos);
 			i += 2;
 		}
 	}
+    counter += write_buffer_force(buffer, &pos);
+    va_end(ap);
 	return (counter);
 }
