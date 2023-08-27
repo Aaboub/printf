@@ -71,8 +71,8 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-            if (!format[i + 1] || format[i + 1] == ' ')
-                return (-1);
+			if (!format[i + 1] || format[i + 1] == ' ')
+				return (-1);
 			counter += print_arg(format[i + 1], ap, buffer, &pos);
 			i += 2;
 		}
