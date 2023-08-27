@@ -17,8 +17,7 @@ void do_print_int(int i, int *w, char *buffer, int *pos)
 	else
 	{
 		(*w) += write_buffer(buffer, pos);
-		buffer[*pos] = abs(i) + '0';
-		(*pos)++;
+		buffer[(*pos)++] = abs(i) + '0';
 	}
 }
 
@@ -40,8 +39,7 @@ int print_int(va_list ap, char arg, char *buffer, int *pos)
 	if (i < 0)
 	{
 		w = write_buffer(buffer, pos);
-		buffer[*pos] = '-';
-		(*pos)++;
+		buffer[(*pos)++] = '-';
 	}
 	do_print_int(i, &w, buffer, pos);
 	return (w);

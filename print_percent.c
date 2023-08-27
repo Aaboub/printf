@@ -16,7 +16,6 @@ int print_percent(va_list ap, char arg, char *buffer, int *pos)
 	UNUSED(ap);
 	UNUSED(pos);
 	w = write_buffer(buffer, pos);
-	buffer[*pos] = arg;
-	(*pos)++;
+	buffer[(*pos)++] = arg;
 	return (w);
 }

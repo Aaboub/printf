@@ -6,6 +6,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <limits.h>
+#include <stdbool.h>
 
 #define BASE_BINA 'b'
 #define BASE_OCTA 'o'
@@ -30,7 +31,9 @@ int print_percent(va_list ap, char arg, char *buffer, int *pos);
 int print_int(va_list ap, char arg, char *buffer, int *pos);
 int print_base(va_list ap, char arg, char *buffer, int *pos);
 int print_nsign(va_list ap, char arg, char *buffer, int *pos);
+
 int write_buffer(char *buffer, int *pos);
 int write_buffer_force(char *buffer, const int *pos);
+bool is_non_printable(char i);
 
 #endif

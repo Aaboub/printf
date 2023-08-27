@@ -15,7 +15,6 @@ int print_char(va_list ap, char arg, char *buffer, int *pos)
 
 	UNUSED(arg);
 	w = write_buffer(buffer, pos);
-	buffer[*pos] = va_arg(ap, int);
-	(*pos)++;
+	buffer[(*pos)++] = va_arg(ap, int);
 	return (w);
 }
