@@ -9,7 +9,7 @@
  */
 int write_buffer(char *buffer, int *pos)
 {
-	int i;
+    unsigned int i;
 
 	if (*pos == BUFFER_SIZE)
 	{

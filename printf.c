@@ -19,11 +19,11 @@ int print_arg(const char arg, va_list ap, char *buffer, int *pos)
 		{'b', print_base}, {'o', print_base}, {'x', print_base},
 		{'X', print_base}, {'u', print_nsign}};
 
-	for (i = 0; i < 9; i++)
-	{
-		if (arg == operations[i].op)
-			return (operations[i].function(ap, arg, buffer, pos));
-	}
+    for (i = 0; i < 9; i++){
+        if (arg == operations[i].op)
+            return (operations[i].function(ap, arg, buffer, pos));
+    }
+    return (-1);
 }
 
 /**
