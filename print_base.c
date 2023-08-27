@@ -14,9 +14,9 @@ void do_print_base(long i, int base, char *map, int *w, char *buffer, int *pos)
 	if (i == 0)
 		return;
 	do_print_base(i / base, base, map, w, buffer, pos);
-    (*w) += write_buffer(buffer, pos);
-    buffer[*pos] = map[(i % base)];
-    (*pos)++;
+	(*w) += write_buffer(buffer, pos);
+	buffer[*pos] = map[(i % base)];
+	(*pos)++;
 }
 
 
@@ -36,16 +36,16 @@ int print_base(va_list ap, char base, char *buffer, int *pos)
 
 	if (i == 0)
 	{
-        w = write_buffer(buffer, pos);
-        buffer[*pos] = '0';
-        (*pos)++;
+		w = write_buffer(buffer, pos);
+		buffer[*pos] = '0';
+		(*pos)++;
 		return (w);
 	}
 	if (i < 0)
 	{
-        w = write_buffer(buffer, pos);
-        buffer[*pos] = '-';
-        (*pos)++;
+		w = write_buffer(buffer, pos);
+		buffer[*pos] = '-';
+		(*pos)++;
 	}
 
 	switch (base)

@@ -3,7 +3,7 @@
 /**
  * print_arg - do actual printing
  *
- * @i: param
+ * @arg: param
  * @ap: param
  * @buffer: param
  * @pos: param
@@ -12,22 +12,32 @@
  */
 int print_arg(const char arg, va_list ap, char *buffer, int *pos)
 {
-    int i;
+	int i;
 
-    operation operations[] = {{'c', print_char}, {'s', print_string}, {'%', print_percent}, {'d', print_int},
-                              {'i', print_int}, {'b', print_base}, {'o', print_base}, {'x', print_base},
-                              {'X', print_base}, {'u', print_nsign}};
+	operation operations[] = {{'c', print_char}, {'s', print_string},
+		{'%', print_percent}, {'d', print_int}, {'i', print_int},
+		{'b', print_base}, {'o', print_base}, {'x', print_base},
+		{'X', print_base}, {'u', print_nsign}};
 
-    for (i = 0; i < 9; i++){
-        if (arg == operations[i].op)
-            return (operations[i].function(ap, arg, buffer, pos));
-    }
+	for (i = 0; i < 9; i++)
+	{
+		if (arg == operations[i].op)
+			return (operations[i].function(ap, arg, buffer, pos));
+	}
 }
 
-int is_valid_arg(char arg) {
-    return (arg != '\0' &&
-           (arg != 'c' && arg != 's' && arg != 'd' && arg != 'i' && arg != 'b' && arg != 'o' && arg != 'x' &&
-            arg != 'X' && arg != 'u' && arg != '%'));
+/**
+ * is_valid_arg - is valid
+ * @arg: param
+ *
+ * Return: int
+ */
+int is_valid_arg(char arg)
+{
+	return (arg != '\0' && (arg != 'c' && arg != 's'
+				&& arg != 'd' && arg != 'i' && arg != 'b'
+				&& arg != 'o' && arg != 'x' && arg != 'X'
+				&& arg != 'u' && arg != '%'));
 }
 
 /**
@@ -39,10 +49,10 @@ int is_valid_arg(char arg) {
 int _printf(const char *format, ...)
 {
 	char buffer[BUFFER_SIZE];
-    int counter = 0;
-    int pos = 0;
-    int i = 0;
-    va_list ap;
+	int counter = 0;
+	int pos = 0;
+	int i = 0;
+	va_list ap;
 
 	if (!format)
 		return (-1);
@@ -53,9 +63,9 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%' || is_valid_arg(format[i + 1]))
 		{
-            counter += write_buffer(buffer, &pos);
+			counter += write_buffer(buffer, &pos);
 			buffer[pos] = format[i];
-            pos++;
+			pos++;
 			i++;
 		}
 		else
@@ -64,7 +74,7 @@ int _printf(const char *format, ...)
 			i += 2;
 		}
 	}
-    counter += write_buffer_force(buffer, &pos);
-    va_end(ap);
+	counter += write_buffer_force(buffer, &pos);
+	va_end(ap);
 	return (counter);
 }

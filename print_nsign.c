@@ -16,9 +16,9 @@ void do_print_nsign(unsigned int i, int *w, char *buffer, int *pos)
 	}
 	else
 	{
-        (*w) = write_buffer(buffer, pos);
-        buffer[*pos] = i + '0';
-        (*pos)++;
+		(*w) = write_buffer(buffer, pos);
+		buffer[*pos] = i + '0';
+		(*pos)++;
 	}
 }
 

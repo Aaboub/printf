@@ -9,16 +9,16 @@
  */
 int write_buffer(char *buffer, int *pos)
 {
-    int i;
+	int i;
 
-    if (*pos == BUFFER_SIZE)
-    {
-        for (i = 0; i < BUFFER_SIZE; i++)
-            put_char(buffer[i]);
-        (*pos) = 0;
-        return BUFFER_SIZE;
-    }
-    return 0;
+	if (*pos == BUFFER_SIZE)
+	{
+		for (i = 0; i < BUFFER_SIZE; i++)
+			put_char(buffer[i]);
+		(*pos) = 0;
+		return (BUFFER_SIZE);
+	}
+	return (0);
 }
 
 /**
@@ -30,11 +30,11 @@ int write_buffer(char *buffer, int *pos)
  */
 int write_buffer_force(char *buffer, const int *pos)
 {
-    int i;
+	int i;
 
-    for (i = 0; i < *pos; i++)
-            put_char(buffer[i]);
-    return *pos;
+	for (i = 0; i < *pos; i++)
+		put_char(buffer[i]);
+	return (*pos);
 }
 
 /**

@@ -16,10 +16,10 @@ int do_print_string(char *s, char *buffer, int *pos)
 	{
 		while (*s)
 		{
-            w = write_buffer(buffer, pos);
-            buffer[*pos] = *s;
-            (*pos)++;
-            s++;
+			w = write_buffer(buffer, pos);
+			buffer[*pos] = *s;
+			(*pos)++;
+			s++;
 		}
 		return (w);
 	}
