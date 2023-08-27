@@ -3,6 +3,7 @@
 /**
  * do_print_string - do print
  * @s: param
+ * @arg: param
  * @buffer: param
  * @pos: param
  *

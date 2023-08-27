@@ -18,7 +18,7 @@ int print_arg(const char arg, va_list ap, char *buffer, int *pos)
 		{'%', print_percent}, {'d', print_int}, {'i', print_int},
 		{'b', print_base}, {'o', print_base}, {'x', print_base},
 		{'X', print_base}, {'u', print_nsign}, {'S', print_string},
-        {'p', print_address}};
+		{'p', print_address}};
 
 	for (i = 0; i < 12; i++)
 	{
@@ -40,7 +40,7 @@ int is_valid_arg(char arg)
 				&& arg != 'd' && arg != 'i' && arg != 'b'
 				&& arg != 'o' && arg != 'x' && arg != 'X'
 				&& arg != 'u' && arg != '%' && arg != 'S'
-                && arg != 'p'));
+				&& arg != 'p'));
 }
 
 /**
