@@ -10,13 +10,13 @@
  */
 int do_print_string(char *s, char *buffer, int *pos)
 {
-	int w;
+	int w = 0;
 
 	if (s)
 	{
 		while (*s)
 		{
-			w = write_buffer(buffer, pos);
+			w += write_buffer(buffer, pos);
 			buffer[*pos] = *s;
 			(*pos)++;
 			s++;
