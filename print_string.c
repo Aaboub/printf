@@ -11,29 +11,29 @@
 int do_print_string(char *s, char arg, char *buffer, int *pos)
 {
 	int w = 0;
-    char map[] = "0123456789ABCDEF";
+	char map[] = "0123456789ABCDEF";
 
-    if (s)
+	if (s)
 	{
 		while (*s)
 		{
 			w += write_buffer(buffer, pos);
-            if (arg == 'S' && is_non_printable(*s))
-            {
-                buffer[(*pos)++] = '\\';
-                w += write_buffer(buffer, pos);
-                buffer[(*pos)++] = 'x';
-                w += write_buffer(buffer, pos);
-                buffer[(*pos)++] = map[*s / 16];
-                w += write_buffer(buffer, pos);
-                buffer[(*pos)++] = map[*s % 16];
-                s++;
-            }
-            else
-            {
-                buffer[(*pos)++] = *s;
-                s++;
-            }
+			if (arg == 'S' && is_non_printable(*s))
+			{
+				buffer[(*pos)++] = '\\';
+				w += write_buffer(buffer, pos);
+				buffer[(*pos)++] = 'x';
+				w += write_buffer(buffer, pos);
+				buffer[(*pos)++] = map[*s / 16];
+				w += write_buffer(buffer, pos);
+				buffer[(*pos)++] = map[*s % 16];
+				s++;
+			}
+			else
+			{
+				buffer[(*pos)++] = *s;
+				s++;
+			}
 		}
 		return (w);
 	}
@@ -58,10 +58,11 @@ int print_string(va_list ap, char arg, char *buffer, int *pos)
 
 /**
  * is_non_printable - printable?
- * @i: param 
- * 
+ * @i: param
+ *
  * Return: printable?
  */
-bool is_non_printable(char i) {
-    return i < 32 || i >= 127;
+bool is_non_printable(char i)
+{
+	return (i < 32 || i >= 127);
 }
